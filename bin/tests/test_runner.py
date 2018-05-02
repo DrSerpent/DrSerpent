@@ -13,6 +13,6 @@ print(Expect([directory_path,test_directory]).to_equal(file_paths))
 
 # add directory_paths to sys.path
 
-# add_directory_paths(['hello'])
-#
-# print(Expect(sys.path).to_include('hello'))
+add_directory_paths(['hello'])
+
+print(Expect(sys.path).to_include('hello'))

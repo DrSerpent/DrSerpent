@@ -1,6 +1,6 @@
 import os, sys
 from context import Expect
-from context import get_test_directories
+from context import *
 
 # return relative paths of those directories
 

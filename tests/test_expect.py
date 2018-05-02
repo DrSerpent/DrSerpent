@@ -13,3 +13,13 @@ print(expect.to_equal(3)["result"] == False)
 
 print("to_equal matcher false reason")
 print(expect.to_equal(3)["reason"] == "Expected: 2\nGot: 3")
+
+expect = Expect(['array'])
+
+print("to_equal checks an array")
+print(expect.expectation == ['array'])
+
+############# to_be_true #############
+
+print("expect true with to_be_true matcher")
+print(Expect(True).to_be_true)

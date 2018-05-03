@@ -1,21 +1,16 @@
 from collector import *
 from executor import *
 
-# (test_directories, test_filenames) = get_tests('.')
+orignal_sys_path = set(sys.path)
+tests = []
 
-(test_directories, test_modules) = get_tests('.', 'tests')
+directory_dictionaries = get_tests('.', 'tests')
 
+for dict in directory_dictionaries:
+    extract_tests(dict,tests)
+    reset_sys_path(orignal_sys_path)
 
-add_directory_paths(test_directories)
-extracted_tests = extract_tests(test_modules)
+print(tests)
 
-print('----------')
-print(test_modules)
-print('----------')
-
-print('----------')
-print(extracted_tests)
-print('----------')
-
-for t in extracted_tests:
+for t in tests:
     print(execute_test(t))

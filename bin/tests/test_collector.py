@@ -1,46 +1,28 @@
 import os, sys
 from context import *
 
-## TEST ONE
+def test_get_directories_and_their_modules():
+    example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
+    fizzbuzz_directory = example_directory_path + '/fizzbuzz/example_tests'
+    broken_fizzbuzz_directory = example_directory_path + '/broken_fizzbuzz/example_tests'
+    directory_dictionaries = get_tests(example_directory_path, 'example_tests')
+    return Expect(directory_dictionaries).to_equal([
+            { "directory": broken_fizzbuzz_directory, "modules": ['test_broken_logic']},
+            { "directory": fizzbuzz_directory, "modules": ['test_logic']}
+        ])
 
-print('return relative paths of those directories named /tests')
+def test_extract_adds_directory_to_sys_path():
+    extract_tests({ "directory": 'hello', "modules":[]},[])
+    return Expect(sys.path).to_include('hello')
 
-example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
-fizzbuzz_directory = example_directory_path + '/fizzbuzz/example_tests'
-broken_fizzbuzz_directory = example_directory_path + '/broken_fizzbuzz/example_tests'
-example_directories = [broken_fizzbuzz_directory,fizzbuzz_directory]
+def test_extract_tests_adds_tests_in_directory_to_list():
+    list = []
+    extract_tests({ "directory": fizzbuzz_directory, "modules": ['test_logic']},list)
+    from test_logic import test_fizz
+    return Expect(list).to_include(test_fizz)
 
-(test_directories, test_modules) = get_tests(example_directory_path, 'example_tests')
-
-print(Expect(example_directories).to_equal(test_directories))
-
-## TEST TWO
-
-print('get files/modules in test directory')
-
-example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
-(test_directories, test_modules) = get_tests(example_directory_path, 'example_tests')
-
-print(Expect(['test_broken_logic','test_logic']).to_equal(test_modules))
-
-## TEST THREE
-
-print('add directory_paths to sys.path')
-add_directory_paths(['hello'])
-
-print(Expect(sys.path).to_include('hello'))
-
-## TEST FOUR
-
-print('extracts test methods from modules')
-
-example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
-(test_directories, test_modules) = get_tests(example_directory_path, 'example_tests')
-
-add_directory_paths(test_directories)
-
-from test_logic import test_fizz
-
-example_tests = extract_tests(test_modules)
-
-print(Expect(example_tests).to_include(test_fizz))
+def test_reset_sys_path():
+    original_sys_path = set(sys.path)
+    sys.path.append('helloworld, this will be removed')
+    reset_sys_path(original_sys_path)
+    return Expect(sys.path).to_not_include('helloworld, this will be removed')

@@ -1,23 +1,44 @@
 import os, sys
 from context import *
 
+## TEST ONE
+
 print('return relative paths of those directories named /tests')
 
-directory_path = os.path.dirname(os.path.realpath(__file__))
-test_directory = directory_path + '/example/fizzbuzz/tests'
+example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example'
+test_directory = example_directory_path + '/fizzbuzz/tests'
 
-file_paths = get_test_directories(directory_path)
+(test_directories, test_modules) = get_tests(example_directory_path)
 
-print(Expect([directory_path,test_directory]).to_equal(file_paths))
+print(Expect([test_directory]).to_equal(test_directories))
+
+## TEST TWO
+
+print('get files/modules in test directory')
+
+example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example'
+(test_directories, test_modules) = get_tests(example_directory_path)
+
+print(Expect(['test_printer','test_logic']).to_equal(test_modules))
+
+## TEST THREE
 
 print('add directory_paths to sys.path')
 add_directory_paths(['hello'])
 
 print(Expect(sys.path).to_include('hello'))
 
-print('get files/modules in test directory')
+## TEST FOUR
 
-test_directory = directory_path + '/example/fizzbuzz/tests'
-test_files = get_test_files(test_directory)
+print('extracts test methods from modules')
 
-print(Expect(['test_printer','test_logic']).to_equal(test_files))
+example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example'
+(test_directories, test_modules) = get_tests(example_directory_path)
+
+add_directory_paths(test_directories)
+
+from test_printer import test_one
+
+tests = extract_tests(test_modules)
+
+print(Expect(tests).to_include(test_one))

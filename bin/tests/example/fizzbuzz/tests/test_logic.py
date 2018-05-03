@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import os, sys
 from context import *
 
@@ -14,3 +15,13 @@ print(Expect(Fizzbuzz.run(15)).to_equal('Fizzbuzz'))
 
 print('Should return a number if not divisible by 3 or 5')
 print(Expect(Fizzbuzz.run(1)).to_equal(1))
+=======
+def test_four():
+    return
+
+def test_five():
+    return
+
+def test_six():
+    return
+>>>>>>> cd761edabd139940e7bc3ab6924977ed47b7c123

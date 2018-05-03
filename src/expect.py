@@ -1,3 +1,6 @@
+from io import StringIO
+import sys
+
 class Expect(object):
 
     def __init__(self, expectation):
@@ -25,3 +28,23 @@ class Expect(object):
                 "result": False,
                 "reason": f"{self.expectation} does not include {comparison}"
                 }
+
+    def to_output_to_stdout(self, comparison):
+        if callable(self.expectation) is not True:
+            return {
+                "result": False,
+                "reason": f"Expected: {self.expectation} to be callable to output to stdout"
+                }
+        else:
+            old_stdout = sys.stdout
+            sys.stdout = output = StringIO()
+            self.expectation()
+            sys.stdout = old_stdout
+            output = output.getvalue()[0:-1]
+            if output == comparison:
+                return {"result": True}
+            else:
+                return {
+                    "result": False,
+                    "reason": f"Expected: {output}\nGot: {comparison}"
+                    }

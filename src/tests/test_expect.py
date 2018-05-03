@@ -28,3 +28,24 @@ expect_4 = Expect([])
 
 print("to_include matcher - not included")
 print(expect_4.to_include("hello")["result"] == False)
+
+def helloworld():
+    print('hello')
+
+expect_5 = Expect('hello')
+
+print("to_output_to_stdout must take a callable expect")
+print(expect_5.to_output_to_stdout("what")["result"] == False)
+
+print("to_output_to_stdout gives an intelligent failure message if not callable")
+print(expect_5.to_output_to_stdout("what")["reason"] == 'Expected: hello to be callable to output to stdout')
+
+expect_5 = Expect(lambda: print("hello"))
+
+print("matches output to stdout")
+print(expect_5.to_output_to_stdout("hello")['result'] == True)
+
+expect_5 = Expect(lambda: print("shit"))
+
+print("provides comparison for invalid match to stdout")
+print(expect_5.to_output_to_stdout("hello")['reason'] == 'Expected: shit\nGot: hello')

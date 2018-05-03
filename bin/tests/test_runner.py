@@ -19,7 +19,7 @@ print('get files/modules in test directory')
 example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example'
 (test_directories, test_modules) = get_tests(example_directory_path)
 
-print(Expect(['test_printer','test_logic']).to_equal(test_modules))
+print(Expect(['test_logic']).to_equal(test_modules))
 
 ## TEST THREE
 
@@ -37,8 +37,8 @@ example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example
 
 add_directory_paths(test_directories)
 
-from test_printer import test_one
+from test_logic import test_fizz
 
 tests = extract_tests(test_modules)
 
-print(Expect(tests).to_include(test_one))
+print(Expect(tests).to_include(test_fizz))

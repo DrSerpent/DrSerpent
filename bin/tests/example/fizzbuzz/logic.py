@@ -1,16 +1,11 @@
 class Fizzbuzz:
 
-    def fizz(num):
-        if num % 3 == 0:
-            return 'Fizz'
-
-    def buzz(num):
-        if num % 5 == 0:
-            return 'Buzz'
-
-    def fizzbuzz(num):
+    def run(num):
         if num % 15 == 0:
             return 'Fizzbuzz'
-
-    def number(num):
-        return num
+        elif num % 3 == 0:
+            return 'Fizz'
+        elif num % 5 == 0:
+            return 'Buzz'
+        else:
+            return num

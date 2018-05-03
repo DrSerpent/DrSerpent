@@ -26,9 +26,3 @@ def extract_tests(test_modules):
             if attribute[0:5] == 'test_':
                 tests.append(getattr(module, attribute))
     return tests
-
-# print(sys.path)
-#
-# import test_logic
-#
-# print(dir(test_logic))

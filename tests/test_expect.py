@@ -21,5 +21,5 @@ print(expect.expectation == ['array'])
 
 ############# to_be_true #############
 
-print("expect true with to_be_true matcher")
-print(Expect(True).to_be_true)
+# print("expect true with to_be_true matcher")
+# print(Expect(True).to_be_true)

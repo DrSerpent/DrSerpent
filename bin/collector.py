@@ -1,14 +1,13 @@
 import os, sys, importlib
 
-def get_tests(top):
+def get_tests(top, directory_naming_convention):
     test_directories = []
     test_files = []
     for (dirpath, dirnames, filenames) in os.walk(top):
-        if dirpath[-6:] == "/tests":
+        if dirpath.rpartition('/')[-1] == directory_naming_convention:
             test_directories.append(dirpath)
             for filename in filenames:
                 if filename[0:5] == "test_" and filename[-3:] == ".py":
-                    print(f"adding: {dirpath}/{filename}")
                     test_files.append(filename[0:-3])
     return (test_directories,test_files)
 
@@ -23,6 +22,8 @@ def extract_tests(test_modules):
         module = importlib.import_module(test_file)
         attributes = dir(module)
         for attribute in attributes:
-            if attribute[0:5] == 'test_':
-                tests.append(getattr(module, attribute))
+            if attribute[0:5] == "test_":
+                test = getattr(module, attribute)
+                if callable(test):
+                    tests.append(test)
     return tests

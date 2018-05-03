@@ -12,3 +12,6 @@ print(Expect(fizz_buzz.buzz(5)).to_equal('Buzz'))
 
 print('Should return fizzbuzz for multiples of 15')
 print(Expect(fizz_buzz.fizzbuzz(15)).to_equal('Fizzbuzz'))
+
+print('Should return a number if not divisible by 3 or 5')
+print(Expect(fizz_buzz.number(1)).to_equal(1))

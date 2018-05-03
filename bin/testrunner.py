@@ -13,4 +13,4 @@ for dict in directory_dictionaries:
 print(tests)
 
 for t in tests:
-    print(execute_test(t))
+    execute_test(t)

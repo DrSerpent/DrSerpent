@@ -17,6 +17,8 @@ def test_extract_adds_directory_to_sys_path():
 
 def test_extract_tests_adds_tests_in_directory_to_list():
     list = []
+    example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
+    fizzbuzz_directory = example_directory_path + '/fizzbuzz/example_tests'
     extract_tests({ "directory": fizzbuzz_directory, "modules": ['test_logic']},list)
     from test_logic import test_fizz
     return Expect(list).to_include(test_fizz)

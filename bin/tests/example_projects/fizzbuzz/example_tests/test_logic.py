@@ -1,5 +1,5 @@
 import os, sys
-from contextfizz import *
+from fizzbuzz_context import *
 
 def test_fizz():
     return Expect(Fizzbuzz.run(3)).to_equal('Fizz')

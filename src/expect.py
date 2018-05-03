@@ -25,3 +25,15 @@ class Expect(object):
                 "result": False,
                 "reason": f"{self.expectation} does not include {comparison}"
                 }
+
+    def to_output_to_stdout(self, comparison):
+        if callable(self.expectation) is not True:
+            return {
+                "result": False,
+                "reason": f"Expected: {self.expectation} to be callable to output to stdout"
+                }
+        elif:
+            return {
+                "result": False,
+                "reason": f"Expected: {self.expectation}\nGot: {comparison}"
+                }

@@ -46,3 +46,5 @@ def test_to_output_to_stdout_passes_correctly_matched_output():
 
 def test_to_output_to_stdout_fails_incorrectly_matched_output():
     return Expect(Expect(lambda: print('hello')).to_output_to_stdout("goodbye")['reason']).to_equal('Expected: goodbye\nGot: hello')
+
+# to_have_been_called_with_args

@@ -10,7 +10,5 @@ for dict in directory_dictionaries:
     extract_tests(dict,tests)
     reset_sys_path(orignal_sys_path)
 
-print(tests)
-
 for t in tests:
     execute_test(t)

@@ -5,9 +5,9 @@ class ANSI:
 
 def execute_test(test):
     if test()['result'] == True:
-        print('\033[92mPassed\u001b[0m')
+        print(f'\033[92m{test.__name__}\u001b[0m')
     else:
-        print('\u001b[31mFailed\u001b[0m')
+        print(f'\u001b[31m{test.__name__}\u001b[0m')
 
 def print_green(string):
     print(ANSI.GREEN + string + ANSI.RESET)

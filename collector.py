@@ -8,7 +8,7 @@ def get_tests(top, directory_naming_convention):
             for filename in filenames:
                 if filename[0:5] == "test_" and filename[-3:] == ".py":
                     test_modules.append(filename[0:-3])
-            directory_dictionaries.append({ "directory":dirpath, "modules":test_modules})
+            directory_dictionaries.append({"directory":dirpath, "modules":test_modules})
     return directory_dictionaries
 
 def extract_tests(directory_dictionary,tests):

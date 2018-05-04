@@ -22,7 +22,7 @@ class Expect(object):
                 "reason": f"{self.expectation} is not a list"
                 }
         elif comparison in self.expectation:
-                return {"result": True}
+            return {"result": True}
         else:
             return {
                 "result": False,

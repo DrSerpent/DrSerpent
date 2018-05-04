@@ -1,14 +1,8 @@
-MANIFEST.in
 README.md
-setup.py
-drserpent/__init__.py
-drserpent/expect.py
 drserpent.egg-info/PKG-INFO
 drserpent.egg-info/SOURCES.txt
 drserpent.egg-info/dependency_links.txt
+drserpent.egg-info/entry_points.txt
 drserpent.egg-info/not-zip-safe
 drserpent.egg-info/requires.txt
 drserpent.egg-info/top_level.txt
-drserpent/tests/__init__.py
-drserpent/tests/context.py
-drserpent/tests/test_expect.py

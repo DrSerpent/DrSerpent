@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        serpent=scripts.serpent:cli
+    

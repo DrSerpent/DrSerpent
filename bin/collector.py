@@ -24,10 +24,6 @@ def extract_tests(directory_dictionary,tests):
                 if callable(test):
                     tests.append(test)
 
-def add_directory_paths(array):
-    for path in array:
-        sys.path.append(path)
-
 def reset_sys_path(original_sys_path):
     to_remove = [path for path in sys.path if path not in original_sys_path]
     for path in to_remove:

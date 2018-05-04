@@ -12,7 +12,7 @@ class Expect(object):
         else:
             return {
                 "result": False,
-                "reason": f"Expected: {self.expectation}\nGot: {comparison}"
+                "reason": f"Expected: {comparison}\nGot: {self.expectation}"
                 }
 
     def to_include(self, comparison):
@@ -49,7 +49,7 @@ class Expect(object):
         if callable(self.expectation) is not True:
             return {
                 "result": False,
-                "reason": f"Expected: {self.expectation} to be callable to output to stdout"
+                "reason": f"Expected: {self.expectation} to be callable"
                 }
         else:
             old_stdout = sys.stdout
@@ -62,5 +62,8 @@ class Expect(object):
             else:
                 return {
                     "result": False,
-                    "reason": f"Expected: {output}\nGot: {comparison}"
+                    "reason": f"Expected: {comparison}\nGot: {output}"
                     }
+
+    # def to_have_been_called_with_args(*args):
+    #     return

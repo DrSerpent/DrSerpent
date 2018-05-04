@@ -64,3 +64,6 @@ class Expect(object):
                     "result": False,
                     "reason": f"Expected: {output}\nGot: {comparison}"
                     }
+
+    def to_have_been_called_with_arguments(*args):
+        return

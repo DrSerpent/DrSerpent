@@ -1,66 +1,48 @@
 from context import Expect
 
+# to_equal
+
 def test_expectation_stored_in_state():
     return Expect(Expect(2).expectation).to_equal(2)
 
-expect = Expect(2)
-print("expectation")
-print(expect.expectation == 2)
-
-def test_to_equal_matcher_returns_result_boolean():
+def test_to_equal_matcher_returns_result_true():
     return Expect(Expect(2).to_equal(2)["result"]).to_equal(True)
 
-print("to_equal matcher")
-print(expect.to_equal(2)["result"])
+def test_to_equal_matcher_returns_result_false():
+    return Expect(Expect(2).to_equal(3)["result"]).to_equal(False)
 
-print("to_equal matcher false")
-print(expect.to_equal(3)["result"] == False)
+def test_to_equal_matcher_gives_fail_reason():
+    return Expect(Expect(2).to_equal(3)["reason"]).to_equal("Expected: 3\nGot: 2")
 
-print("to_equal matcher false reason")
-print(expect.to_equal(3)["reason"] == "Expected: 2\nGot: 3")
+# to_include
 
-expect_2 = Expect(['hello'])
+def test_to_include_returns_true_if_in_list():
+    return Expect(Expect(['yes','no']).to_include('yes')["result"]).to_equal(True)
 
-print("to_include matcher - true")
-print(expect_2.to_include('hello')["result"] == True)
+def test_to_include_returns_false_if_not_in_list():
+    return Expect(Expect(['yes','no']).to_include('maybe')["result"]).to_equal(False)
 
-expect_3 = Expect("hello")
+def test_to_include_returns_reason_if_expectation_is_not_a_list():
+    return Expect(Expect('yes').to_include('maybe')["reason"]).to_equal('yes is not a list')
 
-print("to_include matcher - not a list")
-print(expect_3.to_include("hello")["result"] == False)
+# to_not_include
 
-expect_4 = Expect([])
+def test_to_not_include_returns_true_if_not_in_list():
+    return Expect(Expect(['yes','no']).to_not_include('maybe')["result"]).to_equal(True)
 
-print("to_include matcher - not included")
-print(expect_4.to_include("hello")["result"] == False)
+def test_to_not_include_returns_false_if_in_list():
+    return Expect(Expect(['yes','no']).to_not_include('yes')["result"]).to_equal(False)
 
-expect_5 = Expect('helloworld')
+def test_to_not_include_returns_reason_if_expectation_is_not_a_list():
+    return Expect(Expect('yes').to_not_include('maybe')["reason"]).to_equal('yes is not a list')
 
-print("to_not_include matcher - not a list")
-print(expect_5.to_not_include('oi')["result"] == False)
+# to_output_to_stdout
 
-expect_6 = Expect(["hellworld"])
+def test_to_output_to_stdout_requires_expectation_to_be_callable():
+    return Expect(Expect('hello').to_output_to_stdout('hello')['reason']).to_equal('Expected: hello to be callable')
 
-print("to_not_include matcher - fails if included")
-print(expect_6.to_not_include("hellworld")["result"] == False)
+def test_to_output_to_stdout_passes_correctly_matched_output():
+    return Expect(Expect(lambda: print('hello')).to_output_to_stdout("hello")['result']).to_equal(True)
 
-print("to_not_include matcher - passes if not included")
-print(expect_6.to_not_include("oi")["result"] == False)
-
-expect_7 = Expect('hello')
-
-print("to_output_to_stdout must take a callable expect")
-print(expect_7.to_output_to_stdout("what")["result"] == False)
-
-print("to_output_to_stdout gives an intelligent failure message if not callable")
-print(expect_7.to_output_to_stdout("what")["reason"] == 'Expected: hello to be callable to output to stdout')
-
-expect_8 = Expect(lambda: print("hello"))
-
-print("matches output to stdout")
-print(expect_8.to_output_to_stdout("hello")['result'] == True)
-
-expect_9 = Expect(lambda: print("shit"))
-
-print("provides comparison for invalid match to stdout")
-print(expect_9.to_output_to_stdout("hello")['reason'] == 'Expected: shit\nGot: hello')
+def test_to_output_to_stdout_fails_incorrectly_matched_output():
+    return Expect(Expect(lambda: print('hello')).to_output_to_stdout("goodbye")['reason']).to_equal('Expected: goodbye\nGot: hello')

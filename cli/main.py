@@ -1,6 +1,7 @@
 import click
 from .about import about
 from .init import init
+from .test import test
 from testrunner import run
 
 @click.group(invoke_without_command=True)
@@ -13,3 +14,4 @@ def cli(ctx):
 
 cli.add_command(about)
 cli.add_command(init)
+cli.add_command(test)

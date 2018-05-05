@@ -17,6 +17,6 @@ setup(
     zip_safe=False,
     entry_points='''
         [console_scripts]
-        serpent=scripts.serpent:cli
+        serpent=cli.main:cli
     ''',
 )

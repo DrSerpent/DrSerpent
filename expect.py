@@ -95,3 +95,23 @@ class Expect(object):
                     "result": False,
                     "reason": f"Expected args: {args}\nGot args: {self.expectation.args}"
                     }
+
+    def to_have_been_called_times(self, comparison):
+        if type(self.expectation) is not Spy:
+            return {
+                "result": False,
+                "reason": f"Function must be a spy"
+                }
+        elif type(comparison) is not int:
+            return {
+                "result": False,
+                "reason": f"Argument must be an integer"
+                }
+        else:
+            if self.expectation.count == comparison:
+                return {"result": True}
+            else:
+                return {
+                    "result": False,
+                    "reason": f"Expected calls: {comparison}\nGot calls: {self.expectation.count}"
+                    }

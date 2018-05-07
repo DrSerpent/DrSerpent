@@ -33,6 +33,15 @@ class Expect(object):
                 "reason": f"Expected: False\nGot: {self.expectation}"
                 }
 
+    def to_be_none(self):
+        if self.expectation == None:
+            return {"result": True}
+        else:
+            return {
+                "result": False,
+                "reason": f"Expected: None\nGot: {self.expectation}"
+                }
+
     def to_include(self, comparison):
         if type(self.expectation) is not list:
             return {

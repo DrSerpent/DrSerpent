@@ -28,6 +28,11 @@ def test_to_be_falsey_returns_true():
 def test_to_be_falsey_returns_false():
     return Expect(Expect("foo").to_be_falsey()['result']).to_equal(False)
 
+def test_to_be_none_returns_true():
+    return Expect(Expect(None).to_be_none()['result']).to_equal(True)
+
+def test_to_be_none_returns_false():
+    return Expect(Expect("foo").to_be_none()['result']).to_equal(False)
 
 # to_include
 

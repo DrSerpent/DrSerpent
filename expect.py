@@ -80,3 +80,18 @@ class Expect(object):
                     "result": False,
                     "reason": f"Spied upon function was not called"
                     }
+
+    def to_have_been_called_with_args(self, *args):
+        if type(self.expectation) is not Spy:
+            return {
+                "result": False,
+                "reason": f"Function must be a spy"
+                }
+        else:
+            if self.expectation.args == args:
+                return {"result": True}
+            else:
+                return {
+                    "result": False,
+                    "reason": f"Expected args: {args}\nGot args: {self.expectation.args}"
+                    }

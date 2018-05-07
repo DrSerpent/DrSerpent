@@ -30,6 +30,11 @@ def test_spy_knows_if_it_has_been_called():
     spy()
     return Expect(spy.called).to_equal(True)
 
+def test_spy_stores_arguments_when_called():
+    spy = Spy(6)
+    spy([10,20],'yes')
+    return Expect(spy.args).to_equal(([10,20],'yes'))
+
 # def test_spy_counts_number_of_calls():
 #     spy = Spy(6)
 #     spy()

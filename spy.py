@@ -5,4 +5,5 @@ class Spy(object):
         self.called = False
 
     def __call__(self, *args):
+        self.args = args
         self.called = True

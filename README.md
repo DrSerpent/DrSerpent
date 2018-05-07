@@ -47,6 +47,7 @@ The `context.py` file establishes the file route. Run `$ serpent example` for a 
 ### Matchers:
 
 | Matcher | Result | Example |
+|-----|-----|------|
 | `to_equal` | Returns result true or false | `def test_to_equal(): <br> return Expect(Expect(x).to_equal(x)["result"]).to_equal(True)` |
 | `to_include` | Returns true if in the list, false if not, and error message if object is not a list | `def test_to_include(): <br> return Expect(Expect(['x','y']).to_include('x')["result"]).to_equal(True)` |
 | `to_not_include` | Returns true if not in the list, false if it is, and error message if object is not a list| `def test_to_not_include(): <br> return Expect(Expect(['x','y']).to_not_include('z')["result"]).to_equal(True)`|

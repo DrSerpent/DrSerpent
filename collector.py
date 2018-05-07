@@ -28,3 +28,14 @@ def reset_sys_path(original_sys_path):
     to_remove = [path for path in sys.path if path not in original_sys_path]
     for path in to_remove:
         sys.path.remove(path)
+
+def no_tests_found():
+    intelligent_error_message = """
+        No tests have been found -
+        please note that there are strict naming conventions:
+        \nDirectory name are named "tests"
+        \nTest files start with "test_"
+        \nTest functions start wth "test_"
+        e.g. repository_path/src/tests/test_descriptive_name contains def test_describe
+        """
+    print(intelligent_error_message)

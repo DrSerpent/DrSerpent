@@ -28,3 +28,14 @@ def test_reset_sys_path():
     sys.path.append('helloworld, this will be removed')
     reset_sys_path(original_sys_path)
     return Expect(sys.path).to_not_include('helloworld, this will be removed')
+
+def test_print_intelligent_error_message_if_no_tests_found():
+    intelligent_error_message = """
+        No tests have been found -
+        please note that there are strict naming conventions:
+        \nDirectory name are named "tests"
+        \nTest files start with "test_"
+        \nTest functions start wth "test_"
+        e.g. repository_path/src/tests/test_descriptive_name contains def test_describe
+        """
+    return Expect(lambda: no_tests_found()).to_output_to_stdout(intelligent_error_message)

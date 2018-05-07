@@ -24,11 +24,7 @@ from testrunner import run
 def cli(ctx, init):
     # --init
     if ctx.invoked_subcommand is None and init:
-        if not os.path.exists('tests'):
-            os.makedirs('tests')
-            click.echo('    created  test/')
-        else:
-            click.echo('    exists   test/')
+        test_file_creation()
 
     # --run tests
     elif ctx.invoked_subcommand is None:
@@ -41,3 +37,11 @@ def cli(ctx, init):
 cli.add_command(about)
 cli.add_command(test)
 cli.add_command(example)
+
+def test_file_creation():
+    if not os.path.exists('tests'):
+        os.makedirs('tests')
+        click.echo('    created  test/')
+
+    else:
+        click.echo('    exists   test/')

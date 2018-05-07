@@ -2,6 +2,7 @@ import click
 import os
 
 from .about import about
+from .example import example
 from .test import test
 from testrunner import run
 
@@ -15,10 +16,10 @@ from testrunner import run
     help='Display the current version.',
     message='Serpent %(version)s')
 
-@click.option('
---init',
-help='Initialize your project with Serpent.',
-is_flag=True)
+@click.option(
+    '--init',
+    help='Initialize your project with Serpent.',
+    is_flag=True)
 
 def cli(ctx, init):
     # --init
@@ -39,3 +40,4 @@ def cli(ctx, init):
 
 cli.add_command(about)
 cli.add_command(test)
+cli.add_command(example)

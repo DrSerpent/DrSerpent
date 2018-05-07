@@ -7,8 +7,8 @@ def run():
 
     directory_dictionaries = get_tests('.', 'tests')
 
-    for directories in directory_dictionaries:
-        extract_tests(directories, tests)
+    for directory in directory_dictionaries:
+        extract_tests(directory, tests)
         reset_sys_path(orignal_sys_path)
 
     if len(tests) == 0:

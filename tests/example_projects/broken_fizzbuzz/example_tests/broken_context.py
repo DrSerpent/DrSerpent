@@ -7,4 +7,4 @@ parent_directory = current_directory.rpartition('/')[0]
 sys.path.insert(1, parent_directory)
 
 from expect import Expect
-from broken_logic import *
+from logic import *

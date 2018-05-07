@@ -1,7 +1,15 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('.') + "/tests/example_projects/fizzbuzz")
+# This is based on the assumption the code to be tested is in the parent directory
+# For example my_repository/src/tests
 
-from expect import Expect
+# this gets the file path of the parent directory
+current_directory = os.path.dirname(os.path.realpath(__file__))
+parent_directory = current_directory.rpartition('/')[0]
+
+# this adds the parent directory to a list of accesible directories
+sys.path.insert(1, parent_directory)
+
+# import the source code
 from logic import *

@@ -1,4 +1,9 @@
 import os, sys
+
+# import the matcher expect
+from expect import Expect
+
+# import the source code to be tested
 from fizzbuzz_context import *
 
 def test_fizz():

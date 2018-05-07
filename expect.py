@@ -15,6 +15,24 @@ class Expect(object):
                 "reason": f"Expected: {comparison}\nGot: {self.expectation}"
                 }
 
+    def to_be_truthy(self):
+        if self.expectation != False:
+            return {"result": True}
+        else:
+            return {
+                "result": False,
+                "reason": f"Expected: not False\nGot: {self.expectation}"
+                }
+
+    def to_be_falsey(self):
+        if self.expectation == False:
+            return {"result": True}
+        else:
+            return {
+                "result": False,
+                "reason": f"Expected: False\nGot: {self.expectation}"
+                }
+
     def to_include(self, comparison):
         if type(self.expectation) is not list:
             return {

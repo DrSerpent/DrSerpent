@@ -14,6 +14,21 @@ def test_to_equal_matcher_returns_result_false():
 def test_to_equal_matcher_gives_fail_reason():
     return Expect(Expect(2).to_equal(3)["reason"]).to_equal("Expected: 3\nGot: 2")
 
+# to_be
+
+def test_to_be_truthy_returns_true():
+    return Expect(Expect('foo').to_be_truthy()['result']).to_equal(True)
+
+def test_to_be_truthy_returns_false():
+    return Expect(Expect(False).to_be_truthy()['result']).to_equal(False)
+
+def test_to_be_falsey_returns_true():
+    return Expect(Expect(False).to_be_falsey()['result']).to_equal(True)
+
+def test_to_be_falsey_returns_false():
+    return Expect(Expect("foo").to_be_falsey()['result']).to_equal(False)
+
+
 # to_include
 
 def test_to_include_returns_true_if_in_list():

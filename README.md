@@ -16,21 +16,24 @@ def test_number():
 
 https://pypi.org/project/drserpent/
 
-## Getting Started:
+## How to use:
+
+### Getting Started:
 
 `pip install drserpent`
 
-
-## How to use:
-
-Initialise file structure: `serpent --init`
-Run all tests: `serpent`
-Check PyPi version: `serpent --version`
-Information about DrSerpent: `serpent about`
+Initialise file structure: `$ serpent --init`
+Run all tests: `$ serpent`
+Check PyPi version: `$ serpent --version`
+Information about DrSerpent: `$ serpent about`
 
 * Important to note: all tests must start with `test_`
 
-## Matchers:
+### File Structure:
+
+
+
+### Matchers:
 
 * `to_equal` matcher returns result true or false:
     ```

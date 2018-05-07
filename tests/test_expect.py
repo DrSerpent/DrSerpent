@@ -54,4 +54,29 @@ def test_to_have_been_called_knows_when_spy_has_been_called():
     def hello(name):
         print(f'hello {name}')
     spy = Spy(hello)
-    return Expect(spy).to_have_been_called()
+    spy()
+    return Expect(Expect(spy).to_have_been_called_by()['result']).to_equal(True)
+
+def test_to_have_been_called_knows_when_spy_has_not_been_called():
+    def hello(name):
+        print(f'hello {name}')
+    spy = Spy(hello)
+    return Expect(Expect(spy).to_have_been_called()['result']).to_equal(False)
+
+def test_to_have_been_called_gives_reason_for_fail():
+    def hello(name):
+        print(f'hello {name}')
+    spy = Spy(hello)
+    return Expect(Expect(spy).to_have_been_called()['reason']).to_equal('Spied upon function was not called')
+
+def test_to_have_been_called_expectation_must_be_spy():
+    def hello(name):
+        print(f'hello {name}')
+    return Expect(Expect(hello).to_have_been_called()['reason']).to_equal('Function must be a spy')
+
+# to_have_been_called_with_args
+
+def test_to_have_been_called_with_args_must_receive_spy_as_expectation():
+    def hello(name):
+        print(f'hello {name}')
+    return Expect(Expect(hello).to_have_been_called_with_args(10)['reason']).to_equal('Function must be a spy')

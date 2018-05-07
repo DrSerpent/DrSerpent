@@ -1,4 +1,5 @@
 from io import StringIO
+from spy import Spy
 import sys
 
 class Expect(object):
@@ -66,4 +67,16 @@ class Expect(object):
                     }
 
     def to_have_been_called(self):
-        return
+        if type(self.expectation) is not Spy:
+            return {
+                "result": False,
+                "reason": f"Function must be a spy"
+                }
+        else:
+            if self.expectation.called == True:
+                return {"result": True}
+            else:
+                return {
+                    "result": False,
+                    "reason": f"Spied upon function was not called"
+                    }

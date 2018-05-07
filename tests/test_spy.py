@@ -30,7 +30,7 @@ def test_spy_knows_if_it_has_been_called():
     spy()
     return Expect(spy.called).to_equal(True)
 
-def test_spy_counts_number_of_calls():
-    spy = Spy(6)
-    spy()
-    return Expect(spy.called).to_equal(True)
+# def test_spy_counts_number_of_calls():
+#     spy = Spy(6)
+#     spy()
+#     return Expect(spy.called).to_equal(True)

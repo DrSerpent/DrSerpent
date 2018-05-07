@@ -34,6 +34,20 @@ def test_to_be_none_returns_true():
 def test_to_be_none_returns_false():
     return Expect(Expect("foo").to_be_none()['result']).to_equal(False)
 
+# to_be_compared
+
+def test_to_be_greater_than_returns_result_true():
+    return Expect(Expect(3).to_be_greater_than(2)["result"]).to_equal(True)
+
+def test_to_be_greater_than_returns_result_false():
+    return Expect(Expect(2).to_be_greater_than(3)["result"]).to_equal(False)
+
+def test_to_be_less_than_returns_result_true():
+    return Expect(Expect(3).to_be_less_than(4)["result"]).to_equal(True)
+
+def test_to_be_less_than_returns_result_false():
+    return Expect(Expect(4).to_be_less_than(3)["result"]).to_equal(False)
+
 # to_include
 
 def test_to_include_returns_true_if_in_list():
@@ -66,5 +80,3 @@ def test_to_output_to_stdout_passes_correctly_matched_output():
 
 def test_to_output_to_stdout_fails_incorrectly_matched_output():
     return Expect(Expect(lambda: print('hello')).to_output_to_stdout("goodbye")['reason']).to_equal('Expected: goodbye\nGot: hello')
-
-# to_have_been_called_with_args

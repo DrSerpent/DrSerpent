@@ -42,6 +42,24 @@ class Expect(object):
                 "reason": f"Expected: None\nGot: {self.expectation}"
                 }
 
+    def to_be_greater_than(self, comparison):
+        if self.expectation > comparison:
+            return {"result": True}
+        else:
+            return {
+                "result": False,
+                "reason": f"Expected: {self.expectation} to be greater than {comparison}\nGot: False"
+                }
+
+    def to_be_less_than(self, comparison):
+        if self.expectation < comparison:
+            return {"result": True}
+        else:
+            return {
+                "result": False,
+                "reason": f"Expected: {self.expectation} to be less than {comparison}\nGot: False"
+                }
+
     def to_include(self, comparison):
         if type(self.expectation) is not list:
             return {

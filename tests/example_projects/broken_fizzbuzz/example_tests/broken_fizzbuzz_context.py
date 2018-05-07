@@ -1,7 +1,10 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('.') + "/tests/example_projects/broken_fizzbuzz")
+current_directory = os.path.dirname(os.path.realpath(__file__))
+parent_directory = current_directory.rpartition('/')[0]
+
+sys.path.insert(1, parent_directory)
 
 from expect import Expect
 from broken_logic import *

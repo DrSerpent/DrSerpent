@@ -22,10 +22,8 @@ def test_extract_tests_directory_dictionary_to_module_dictionaries():
     from test_logic import test_fizz, test_buzz, test_fizzbuzz, test_number
     module_dictionaries = extract_module_dictionaries({ "directory": fizzbuzz_directory, "modules": ['test_logic']})
     return Expect(module_dictionaries).to_equal([
-        {"module": 'test_logic', "tests": [test_fizz, test_buzz, test_fizzbuzz, test_number]}
+        {"module": 'test_logic', "tests": [test_buzz, test_fizz, test_fizzbuzz, test_number]}
     ])
-
-print(test_extract_tests_directory_dictionary_to_module_dictionaries())
 
 def test_reset_sys_path():
     original_sys_path = set(sys.path)

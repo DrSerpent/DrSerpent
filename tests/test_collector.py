@@ -1,8 +1,6 @@
 import os, sys
 from context_src import *
 
-print('cunt')
-
 def test_get_directories_and_their_modules():
     example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
     fizzbuzz_directory = example_directory_path + '/fizzbuzz/example_tests'

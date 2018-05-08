@@ -1,10 +1,14 @@
 import click
 import os
+import shutil
 
 from .about import about
 from .example import example
 from .test import test
 from testrunner import run
+
+CONTEXT_SRC_FILE = os.path.dirname(__file__) + '/../init/context.py'
+TEST_DST_ROOT = './tests'
 
 @click.group(
     invoke_without_command=True,
@@ -41,6 +45,7 @@ cli.add_command(example)
 def init_folder_creation():
     if not os.path.exists('tests'):
         os.makedirs('tests')
+        shutil.copy(CONTEXT_SRC_FILE, TEST_DST_ROOT)
         click.echo('    created  test/')
     else:
         click.echo('    exists   test/')

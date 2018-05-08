@@ -30,10 +30,10 @@ def test_init_CLI_command_should_create_a_test_folder():
 
     return Expect(result).to_equal(True)
 
-# def test_init_CLI_command_should_create_a_test_folder_with_a_context_file():
-#     runner = CliRunner()
-#     with runner.isolated_filesystem() as tempdir:
-#         runner.invoke(cli, ['--init'])
-#         result = os.path.isdir(tempdir + '/tests.context.py')
-#
-#     return Expect(result).to_equal(True)
+def test_init_CLI_command_should_create_a_test_folder_with_a_context_file():
+    runner = CliRunner()
+    with runner.isolated_filesystem() as tempdir:
+        runner.invoke(cli, ['--init'])
+        result = os.path.isfile(tempdir + '/tests/context.py')
+
+    return Expect(result).to_equal(True)

@@ -1,5 +1,3 @@
-import click
-
 from click.testing import CliRunner
 from context import *
 
@@ -37,3 +35,10 @@ def test_init_CLI_command_should_create_a_test_folder_with_a_context_file():
         result = os.path.isfile(tempdir + '/tests/context.py')
 
     return Expect(result).to_equal(True)
+
+def test_serpent_CLI_command_should_run_all_tests():
+    runner = CliRunner()
+    with runner.isolated_filesystem() as tempdir:
+        result = runner.invoke(cli)
+
+    return Expect(result.output).to_equal('No tests found.')

@@ -110,5 +110,26 @@ class Expect(object):
                     "reason": f"Expected: {comparison}\nGot: {output}"
                     }
 
-    # def to_have_been_called_with_args(*args):
-    #     return
+    def to_throw_error(self, comparison):
+        if callable(self.expectation) is not True:
+            return {
+                "result": False,
+                "reason": f"Expected: {self.expectation} to be callable"
+                }
+        else:
+            try:
+                self.expectation()
+                return {
+                    "result": False,
+                    "reason": "No Error"
+                    }
+            except Exception as e:
+                if comparison == str(e):
+                    return {
+                        "result": True
+                    }
+                else:
+                    return {
+                        "result": False,
+                        "reason": f"Expected: {comparison}\nGot: {str(e)}"
+                        }

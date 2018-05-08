@@ -1,18 +1,19 @@
-class ANSI:
-    RED = '\u001b[31m'
-    GREEN = '\033[92m'
-    RESET = '\u001b[0m'
+from print_colour import *
 
-def execute_test(test):
-    if test() == None:
-        print(f'\u001b[31m{test.__name__}:\nThis test has returned nothing. Please return the Expect.matcher pattern.\u001b[0m\n')
-    elif test()['result'] == True:
-        print(f'\033[92m{test.__name__}\u001b[0m\n')
-    elif test()['result'] == False:
-        print(f'\u001b[31m{test.__name__}:\n{test()["reason"]}\u001b[0m\n')
+class Executor:
 
-def print_green(string):
-    print(ANSI.GREEN + string + ANSI.RESET)
+    def test(test):
+        result = test()
+        if result is None:
+            print_red(f'{test.__name__}:\nThis test has returned nothing. Please return the Expect.matcher pattern.\n')
+        elif result['result'] == True:
+            print_green(f'{test.__name__}\n')
+        elif result['result'] == False:
+            print_red(f'{test.__name__}:\n{result["reason"]}\n')
 
-def print_red(string):
-    print(ANSI.RED + string + ANSI.RESET)
+        try:
+            recovery = result['recovery']
+
+    def module(module):
+        for test in module['tests']:
+            Executor.test(test)

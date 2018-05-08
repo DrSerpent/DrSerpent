@@ -1,5 +1,15 @@
 from expect import Expect
-from spy import Spy
+from spy import *
+
+
+
+def test_spy_on_reassigns_named_function_to_spy():
+    def hello(name):
+        print(f'hello {name}')
+    print(hello)
+    # Spy.on('hello')
+    # hello = Spy(hello)
+    return Expect(type(hello)).to_equal(Spy)
 
 def test_spy_on_returns_a_callable_object():
     def hello(name):
@@ -14,21 +24,29 @@ def test_spy_stores_original_function():
     return Expect(spy.original).to_equal(hello)
 
 def test_spy_knows_if_it_has_not_been_called():
-    spy = Spy(6)
+    def hello(name):
+        print(f'hello {name}')
+    spy = Spy(hello)
     return Expect(spy.called).to_equal(False)
 
 def test_spy_knows_if_it_has_been_called():
-    spy = Spy(6)
+    def hello(name):
+        print(f'hello {name}')
+    spy = Spy(hello)
     spy()
     return Expect(spy.called).to_equal(True)
 
 def test_spy_stores_arguments_when_called():
-    spy = Spy(6)
+    def hello(name):
+        print(f'hello {name}')
+    spy = Spy(hello)
     spy([10,20],'yes')
     return Expect(spy.args).to_equal(([10,20],'yes'))
 
 def test_spy_counts_number_of_calls():
-    spy = Spy(6)
+    def hello(name):
+        print(f'hello {name}')
+    spy = Spy(hello)
     spy()
     spy()
     return Expect(spy.count).to_equal(2)

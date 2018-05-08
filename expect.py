@@ -109,7 +109,10 @@ class Expect(object):
                 }
         else:
             if self.expectation.count == comparison:
-                return {"result": True}
+                return {
+                    "result": True,
+                    "recoveries": [ Spy.recover(), 'Execute.test']
+                        }
             else:
                 return {
                     "result": False,

@@ -23,7 +23,9 @@ def run():
         print(f'\n\U0001F40D module: {module_dictionary["module"]}')
         print('-------------------------------------------')
         for test in module_dictionary['tests']:
-            execute_test(test)
+            recovery = Executor.test(test)
+            if recovery is not None:
+                exec(recovery)
 
     # for t in tests:
     #     execute_test(t)

@@ -22,13 +22,13 @@ def test_number():
 
 `pip install drserpent`
 
-Initialise file structure: `$ serpent --init`
-Initialise dummy file structure (FizzBuzz): `$ serpent example`
-Run all tests: `$ serpent`
-Check PyPi version: `$ serpent --version`
-Information about DrSerpent: `$ serpent about`
+- Initialise file structure: `$ serpent --init`
+- Initialise dummy file structure (FizzBuzz): `$ serpent example`
+- Run all tests: `$ serpent`
+- Check PyPi version: `$ serpent --version`
+- Information about DrSerpent: `$ serpent about`
 
-* Important to note: all tests must start with `test_`
+**Important to note: all tests must start with `test_`**
 
 ### File Structure:
 

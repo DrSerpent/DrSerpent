@@ -90,3 +90,20 @@ def test_to_output_to_stdout_passes_correctly_matched_output():
 
 def test_to_output_to_stdout_fails_incorrectly_matched_output():
     return Expect(Expect(lambda: print('hello')).to_output_to_stdout("goodbye")['reason']).to_equal('Expected: goodbye\nGot: hello')
+
+#throw_error
+
+def test_to_throw_error_method_works():
+    def raise_(ex):
+        raise ex
+    return Expect(Expect(lambda: raise_(Exception('foobar'))).to_throw_error('foobar')['result']).to_equal(True)
+
+def test_to_throw_error_no_error():
+    def raise_(ex):
+        raise ex
+    return Expect(Expect(lambda: raise_(Exception('foobar'))).to_throw_error('foo')['result']).to_equal(False)
+
+def test_to_throw_error_not_callable():
+    def raise_(ex):
+        raise ex
+    return Expect(Expect('foobar').to_throw_error('foobar')['result']).to_equal(False)

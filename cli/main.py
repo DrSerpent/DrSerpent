@@ -24,8 +24,7 @@ from testrunner import run
 def cli(ctx, init):
     # --init
     if ctx.invoked_subcommand is None and init:
-        test_file_creation()
-
+        init_folder_creation()
     # --run tests
     elif ctx.invoked_subcommand is None:
         run()
@@ -38,10 +37,10 @@ cli.add_command(about)
 cli.add_command(test)
 cli.add_command(example)
 
-def test_file_creation():
+# --init cli test dir creation
+def init_folder_creation():
     if not os.path.exists('tests'):
         os.makedirs('tests')
         click.echo('    created  test/')
-
     else:
         click.echo('    exists   test/')

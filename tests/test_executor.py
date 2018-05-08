@@ -20,3 +20,10 @@ def test_executor_fails_broken_tests():
     sys.path.append(broken_fizzbuzz_directory)
     from test_broken_logic import test_broken_fizz
     return Expect(lambda: execute_test(test_broken_fizz)).to_output_to_stdout('\u001b[31mtest_broken_fizz:\nExpected: HEY\nGot: Fizz\u001b[0m\n')
+
+def test_executor_shows_stacktrace_for_errors():
+    example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
+    broken_fizzbuzz_directory = example_directory_path + '/broken_fizzbuzz/example_tests'
+    sys.path.append(broken_fizzbuzz_directory)
+    from test_broken_logic import test_error
+    return Expect(lambda: execute_test(test_error)).to_output_to_stdout('\u001b[31mtest_error:\nERROR: this failed deliberately\u001b[0m\n')

@@ -10,5 +10,8 @@ def test_broken_buzz():
 def test_broken_fizzbuzz():
     return Expect(Fizzbuzz.run(15)).to_equal('NO')
 
+def test_error():
+    raise Exception('this failed deliberately')
+
 def test_broken_number():
     Expect(Fizzbuzz.run(1)).to_equal(1 + 1)

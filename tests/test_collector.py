@@ -1,5 +1,7 @@
 import os, sys
-from context import *
+from context_src import *
+
+print('cunt')
 
 def test_get_directories_and_their_modules():
     example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
@@ -7,8 +9,8 @@ def test_get_directories_and_their_modules():
     broken_fizzbuzz_directory = example_directory_path + '/broken_fizzbuzz/example_tests'
     directory_dictionaries = get_tests(example_directory_path, 'example_tests')
     return Expect(directory_dictionaries).to_equal([
-        {"directory": broken_fizzbuzz_directory, "modules": ['test_broken_logic']},
-        {"directory": fizzbuzz_directory, "modules": ['test_logic']}
+            {"directory": broken_fizzbuzz_directory, "modules": ['test_broken']},
+            {"directory": fizzbuzz_directory, "modules": ['test_logic']}
         ])
 
 def test_extract_adds_directory_to_sys_path():

@@ -39,3 +39,20 @@ def no_tests_found():
         e.g. repository_path/src/tests/test_descriptive_name contains def test_describe
         """
     print(intelligent_error_message)
+
+def extract_module_dictionaries(directory_dictionary):
+    directory = directory_dictionary['directory']
+    modules = directory_dictionary['modules']
+    sys.path.append(directory)
+    module_dictionaries = []
+    for test_file in modules:
+        tests = []
+        module = importlib.import_module(test_file)
+        attributes = dir(module)
+        for attribute in attributes:
+            if attribute[0:5] == "test_":
+                test = getattr(module, attribute)
+                if callable(test):
+                    tests.append(test)
+        module_dictionaries.append({"module":test_file,"tests":tests})
+    return module_dictionaries

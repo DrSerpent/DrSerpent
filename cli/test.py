@@ -1,5 +1,5 @@
 import click
-from testrunner import run
+from runner import run
 
 @click.group()
 def test():

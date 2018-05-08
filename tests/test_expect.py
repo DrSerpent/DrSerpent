@@ -1,4 +1,4 @@
-from context import Expect
+from context_src import Expect
 
 # to_equal
 
@@ -53,11 +53,21 @@ def test_to_be_less_than_returns_result_false():
 def test_to_include_returns_true_if_in_list():
     return Expect(Expect(['yes','no']).to_include('yes')["result"]).to_equal(True)
 
+def test_to_include_returns_true_if_in_string():
+    return Expect(Expect('hellworld').to_include('ell')["result"]).to_equal(True)
+
 def test_to_include_returns_false_if_not_in_list():
     return Expect(Expect(['yes','no']).to_include('maybe')["result"]).to_equal(False)
 
-def test_to_include_returns_reason_if_expectation_is_not_a_list():
-    return Expect(Expect('yes').to_include('maybe')["reason"]).to_equal('yes is not a list')
+def test_to_include_returns_false_if_not_in_string():
+    return Expect(Expect('hellworld').to_include('e.ll')["result"]).to_equal(False)
+
+def test_to_include_returns_reason_if_expectation_is_not_a_list_or_string():
+    return Expect(Expect(12).to_include('maybe')["reason"]).to_equal('12 is not a list or string')
+
+def test_to_include_returns_reason_if_searching_for_something_other_than_string_in_string():
+    return Expect(Expect('yes').to_include([])["reason"]).to_equal("<class 'str'> cannot contain <class 'list'>")
+
 
 # to_not_include
 

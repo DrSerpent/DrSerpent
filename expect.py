@@ -61,10 +61,15 @@ class Expect(object):
                 }
 
     def to_include(self, comparison):
-        if type(self.expectation) is not list:
+        if type(self.expectation) is str and type(comparison) is not str:
             return {
                 "result": False,
-                "reason": f"{self.expectation} is not a list"
+                "reason": f"{type(self.expectation)} cannot contain {type(comparison)}"
+                }
+        elif type(self.expectation) is not list and type(self.expectation) is not str:
+            return {
+                "result": False,
+                "reason": f"{self.expectation} is not a list or string"
                 }
         elif comparison in self.expectation:
             return {"result": True}
@@ -109,6 +114,3 @@ class Expect(object):
                     "result": False,
                     "reason": f"Expected: {comparison}\nGot: {output}"
                     }
-
-    # def to_have_been_called_with_args(*args):
-    #     return

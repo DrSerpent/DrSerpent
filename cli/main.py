@@ -3,7 +3,7 @@ import os
 
 from .about import about
 from .test import test
-from testrunner import run
+from runner import run
 
 @click.group(invoke_without_command=True, no_args_is_help=False)
 @click.pass_context

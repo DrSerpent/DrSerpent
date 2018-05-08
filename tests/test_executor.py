@@ -33,11 +33,15 @@ def test_execute_shows_stacktrace_for_errors():
     broken_fizzbuzz_directory = example_directory_path + '/broken_fizzbuzz/example_tests'
     sys.path.append(broken_fizzbuzz_directory)
     from test_broken import test_error
-    return Expect(lambda: execute_test(test_error)).to_output_to_stdout('\u001b[31mtest_error:\nERROR: this failed deliberately\n\u001b[0m')
+    old_stdout = sys.stdout
+    sys.stdout = output = StringIO()
+    execute_test(test_error)
+    sys.stdout = old_stdout
+    return Expect(output.getvalue()).to_include('ERROR: this failed deliberately')
 
 def test_module_warns_if_test_file_is_empty():
     module_dictionary = {"module":"empty_module", "tests":[]}
-    return Expect(lambda: execute_module(module_dictionary)).to_output_to_stdout(f'\n\U0001F40D  module: empty_module\n-------------------------------------------\nNo tests found.')
+    return Expect(lambda: execute_module(module_dictionary)).to_output_to_stdout(f'\n\U0001F40D  module: empty_module\n-------------------------------------------\nNo tests found.\n')
 
 def test_module_counts_passes_and_fails():
     example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'

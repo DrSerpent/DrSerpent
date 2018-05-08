@@ -34,7 +34,7 @@ def execute_test(test):
 def execute_module(module_dictionary):
     print(f'\n\U0001F40D  module: {module_dictionary["module"]}\n-------------------------------------------')
     if (len(module_dictionary['tests']) is 0):
-        print('No tests found.')
+        print('No tests found.\n')
     else:
         pass_count = 0
         fail_count = 0

@@ -39,3 +39,13 @@ def test_print_intelligent_error_message_if_no_tests_found():
         e.g. repository_path/src/tests/test_descriptive_name contains def test_describe
         """
     return Expect(lambda: no_tests_found()).to_output_to_stdout(intelligent_error_message)
+
+def test_extract_tests_directory_dictionary_to_module_dictionaries():
+    list = []
+    example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
+    fizzbuzz_directory = example_directory_path + '/fizzbuzz/example_tests'
+    from test_logic import test_fizz, test_buzz, test_fizzbuzz, test_number
+    module_dictionaries = extract_module_dictionaries({ "directory": fizzbuzz_directory, "modules": ['test_logic']})
+    return Expect(module_dictionaries).to_equal([
+        {"module": 'test_logic', "tests": [test_buzz, test_fizz, test_fizzbuzz, test_number]}
+    ])

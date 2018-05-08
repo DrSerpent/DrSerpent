@@ -1,9 +1,11 @@
 import click, os, shutil
 
-
-TEST_SRC_FILE = os.path.dirname(__file__) + '/../tests/example_projects/fizzbuzz/example_tests/test_logic.py'
+TEST_SRC_FILE = os.path.dirname(__file__) + '/../init_example/test_fizzbuzz.py'
 TEST_DST_ROOT = './tests'
-SRC_FILE = os.path.dirname(__file__) + '/../tests/example_projects/fizzbuzz/logic.py'
+
+CONTEXT_SRC_FILE = os.path.dirname(__file__) + '/../init_example/context.py'
+
+SRC_FILE = os.path.dirname(__file__) + '/../init_example/fizzbuzz.py'
 DST_ROOT = '.'
 
 @click.group()
@@ -16,6 +18,7 @@ def example():
     create_test_dir()
     create_fizzbuzz_file()
     create_fizzbuzz_test_file()
+    create_fizzbuzz_context_file()
 
 def create_test_dir():
     if not os.path.exists('tests'):
@@ -31,3 +34,7 @@ def create_fizzbuzz_test_file():
 def create_fizzbuzz_file():
     if not os.path.isfile('logic.py'):
         shutil.copy(SRC_FILE, DST_ROOT)
+
+def create_fizzbuzz_context_file():
+    if not os.path.isfile('context.py'):
+        shutil.copy(CONTEXT_SRC_FILE, TEST_DST_ROOT)

@@ -33,7 +33,7 @@ def test_example_CLI_command_should_create_fizzbuzz_example_file():
 
     with runner.isolated_filesystem() as tempdir:
         runner.invoke(example)
-        result = os.path.isfile(tempdir + '/logic.py')
+        result = os.path.isfile(tempdir + '/fizzbuzz.py')
 
     return Expect(result).to_equal(True)
 
@@ -42,6 +42,14 @@ def test_example_CLI_command_should_create_fizzbuzz_example_test_file():
 
     with runner.isolated_filesystem() as tempdir:
         runner.invoke(example)
-        result = os.path.isfile(tempdir + '/tests/test_logic.py')
+        result = os.path.isfile(tempdir + '/tests/test_fizzbuzz.py')
+
+    return Expect(result).to_equal(True)
+
+def test_init_CLI_command_should_create_a_fizzbuzz_context_file_within_test_folder():
+    runner = CliRunner()
+    with runner.isolated_filesystem() as tempdir:
+        runner.invoke(example)
+        result = os.path.isfile(tempdir + '/tests/context.py')
 
     return Expect(result).to_equal(True)

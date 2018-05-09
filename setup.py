@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='drserpent',
-    version='1.0',
+    version='2.0',
     packages=[],
     include_package_data=True,
     install_requires=[

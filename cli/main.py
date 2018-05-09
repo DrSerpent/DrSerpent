@@ -8,7 +8,8 @@ from .test import test
 from runner import run
 
 CONTEXT_SRC_FILE = os.path.dirname(__file__) + '/../init/context.py'
-TEST_DST_ROOT = './tests'
+# need to know which path
+TEST_DST_ROOT = '/tests'
 
 @click.group(
     invoke_without_command=True,

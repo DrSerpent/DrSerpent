@@ -3,11 +3,10 @@ import os
 import shutil
 
 from runner import *
-# from .about import about
-# from .example import example
 
 CONTEXT_SRC_FILE = os.path.dirname(__file__) + '/../init/context.py'
 TEST_DST_ROOT = './tests'
+SNAKE_EMOJI = '\U0001F40D'
 
 @click.group(invoke_without_command=True)
 @click.pass_context
@@ -19,26 +18,35 @@ TEST_DST_ROOT = './tests'
 
 @click.option(
     '--init',
-    help='Initialize your project with Serpent.',
+    help='Initialise your project with DrSerpent.',
     is_flag=True)
 
 @click.option(
     '--about',
+    help='Show list names of DrSerpent creators',
+    is_flag=True
+)
 
+@click.option(
+    '--example',
+    help='Ininitalise your project with an example fizzbuzz project',
+    is_flag=True
 )
 
 @click.argument('filepath', required=False)
 
-def cli(ctx, filepath, init):
-
-    # cli.add_command(about)
-    # cli.add_command(example)
+def cli(ctx, filepath, init, about, example):
 
     # --init
     if ctx.invoked_subcommand is None and init:
         create_test_dir()
         create_context_file()
 
+    elif ctx.invoked_subcommand is None and about:
+        print_about()
+
+    elif ctx.invoked_subcommand is None and example:
+        click.echo('hello')
 
     elif ctx.invoked_subcommand is None and filepath:
         if filepath:
@@ -47,11 +55,6 @@ def cli(ctx, filepath, init):
     # --run all tests
     elif ctx.invoked_subcommand is None:
         run_all()
-
-    # get subcommands
-    else:
-        pass
-
 
 def create_test_dir():
     if not os.path.exists('tests'):
@@ -67,3 +70,6 @@ def create_context_file():
 def run_specific_file(filepath):
     click.echo("running specfic test file")
     run_test(filepath)
+
+def print_about():
+    print(f"Made with {SNAKE_EMOJI} by Alexandra McCarroll, Tom Betts, Richard Hewitt, Hemesh Unka (February 2018 Cohort - Makers Academy)")

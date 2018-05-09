@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 setup(
     name='drserpent',
-    version='2.1',
-    packages=[],
+    version='2.2',
+    packages=find_packages(),
     include_package_data=True,
     install_requires=[
         'emoji',

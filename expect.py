@@ -60,24 +60,28 @@ class Expect(object):
                 "reason": f"Expected: {self.expectation} to be less than {comparison}\nGot: False"
                 }
 
-    def to_include(self, comparison):
-        if type(self.expectation) is str and type(comparison) is not str:
-            return {
-                "result": False,
-                "reason": f"{type(self.expectation)} cannot contain {type(comparison)}"
-                }
-        elif type(self.expectation) is not list and type(self.expectation) is not str:
-            return {
-                "result": False,
-                "reason": f"{self.expectation} is not a list or string"
-                }
-        elif comparison in self.expectation:
-            return {"result": True}
-        else:
-            return {
-                "result": False,
-                "reason": f"{self.expectation} does not include {comparison}"
-                }
+    def to_include(self, *args):
+        for i in range(len(args)):
+            comparison = args[i]
+            if type(self.expectation) is str and type(comparison) is not str:
+                return {
+                    "result": False,
+                    "reason": f"{type(self.expectation)} cannot contain {type(comparison)}"
+                    }
+            elif type(self.expectation) is not list and type(self.expectation) is not str:
+                return {
+                    "result": False,
+                    "reason": f"{self.expectation} is not a list or string"
+                    }
+            elif comparison not in self.expectation:
+                return {
+                    "result": False,
+                    "reason": f"{self.expectation} does not include {comparison}"
+                    }
+        return {
+            "result": True
+        }
+
 
     def to_not_include(self, comparison):
         if type(self.expectation) is not list:

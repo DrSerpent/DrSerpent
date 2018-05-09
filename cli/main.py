@@ -2,9 +2,9 @@ import click
 import os
 import shutil
 
+from runner import *
 from .about import about
 from .example import example
-from runner import run
 
 CONTEXT_SRC_FILE = os.path.dirname(__file__) + '/../init/context.py'
 TEST_DST_ROOT = './tests'
@@ -36,7 +36,7 @@ def cli(ctx, filepath, init):
 
     # --run all tests
     elif ctx.invoked_subcommand is None:
-        run()
+        run_all()
 
     # get subcommands
     else:

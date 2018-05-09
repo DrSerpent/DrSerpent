@@ -49,4 +49,4 @@ def test_serpent_CLI_command_should_run_even_if_no_tests_found():
     with runner.isolated_filesystem():
         result = runner.invoke(cli)
 
-    return Expect(result.output).to_include('No tests found.')
+    return Expect(result.output).to_include('No tests have been found')

@@ -45,5 +45,20 @@ def extract_module_dictionaries(directory_dictionary,original_sys_path):
     reset_sys_path(original_sys_path)
     return module_dictionaries
 
-def collect_module(top,path_to):
-    return
+def collect_module(top,path_to,original_sys_path):
+    file_path = top + '/' + path_to
+    rpartition = file_path.rpartition('/')
+    directory = rpartition[0]
+    file_name = rpartition[-1]
+    module_name = file_name[0:-3]
+    sys.path.append(directory)
+    module = importlib.import_module(module_name)
+    tests = []
+    attributes = dir(module)
+    for attribute in attributes:
+        if attribute[0:5] == "test_":
+            test = getattr(module, attribute)
+            if callable(test):
+                tests.append(test)
+    reset_sys_path(original_sys_path)
+    return {"module":module_name,"tests":tests}

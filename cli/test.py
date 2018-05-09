@@ -9,8 +9,9 @@ def test():
 @click.argument('filename', required=False)
 def test(filename):
     if filename:
-        click.echo("running specfic test file")
-        click.echo(filename)
+        run_test(filename)
+        # click.echo("running specfic test file")
+        # click.echo(filename)
         #run(filname)
     else:
         run_all()

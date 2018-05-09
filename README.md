@@ -49,7 +49,10 @@ The `context.py` file establishes the file route. Run `$ serpent example` for a 
 
 | Matcher | Explanation | Example |
 |-----|-----|------|
-| `to_equal` | Checks if one element equals another and returns result true or false. | `def test_to_equal():`<br>`return Expect(Expect('foo').to_equal('foo')['result']).to_equal(True)` |
+| `to_equal` | Checks if one element equals another and returns result true or false. |```python
+def test_to_equal():
+return Expect(Expect('foo').to_equal('foo')['result']).to_equal(True)
+```|
 | `to_be_truthy` | Passes if object is truthy (not false). | `def test_to_be_truthy():`<br>`return Expect(Expect('foo').to_be_truthy()['result']).to_equal(True)` |
 | `to_be_falsey` | Passes if object is false. | `def test_to_be_falsey():`<br>`return Expect(Expect(False).to_be_falsey()['result']).to_equal(True)` |
 | `to_be_none` | Passes if there is no object. | `def test_to_be_none():`<br>`return Expect(Expect(None).to_be_none()['result']).to_equal(True)`|

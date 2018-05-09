@@ -17,13 +17,13 @@ def test_number():
 
 ## How to use:
 
-##### [Click Here](https://pypi.org/project/drserpent/) to visit the PyPi URL.
+#### [Click Here](https://pypi.org/project/drserpent/) to visit the PyPi URL.
 
-##### View DrSerpent [documentation](https://github.com/DrSerpent/DrSerpent-Core/blob/master/DOCUMENTATION.md).
+#### View DrSerpent [documentation](https://github.com/DrSerpent/DrSerpent-Core/blob/master/DOCUMENTATION.md).
 
-##### [Getting Started](https://github.com/DrSerpent/DrSerpent-Core/blob/master/DOCUMENTATION.md#getting-started)
+#### [Getting Started](https://github.com/DrSerpent/DrSerpent-Core/blob/master/DOCUMENTATION.md#getting-started)
 
-##### [Compulsory Conventions](https://github.com/DrSerpent/DrSerpent-Core/blob/master/DOCUMENTATION.md#conventions)
+#### [Compulsory Conventions](https://github.com/DrSerpent/DrSerpent-Core/blob/master/DOCUMENTATION.md#conventions)
 
 ### Matchers:
 

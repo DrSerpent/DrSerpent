@@ -7,17 +7,17 @@
 - Initialise file structure: `$ serpent --init`
 - Initialise dummy file structure (FizzBuzz): `$ serpent --example`
 - Run all tests: `$ serpent`
-- Run specific test file: `$ serpent test_[FILENAME]`
+- Run specific test file: `$ serpent path/to/test_filename.py`
 - Check PyPi version: `$ serpent --version`
 - Information about DrSerpent: `$ serpent --about`
 
-## Conventions:
+## Compulsory Conventions:
 **The following are strict conventions that need to be adhered to**
 
-- All test files start `test_[FILENAME]`.
-- All test functions start `test_[FILENAME]`.
+- All test files are named `test_file_name.py`.
+- All test functions are named `test_function_name()`.
 - Test directories are named `tests`.
-- The `context.py` file establishes the file route and is necessary in order to import the code from the parent directory that needs to be tested. Run `$ serpent example` for a clearer understanding of how to use DrSerpent.
+- The `context.py` is used to import code to be tested into this directory (by default from the parent directory). Run `$ serpent example` for a clearer understanding of how to use DrSerpent.
 
 ### File Structure:
 
@@ -31,7 +31,6 @@
 ```
 
 ## Matchers:
-
 
 #### `to_equal`
 ##### Checks if one element equals another and returns result true or false.
@@ -77,10 +76,15 @@ def test_to_be_less_than():
 ```
 #### `to_include`
 ##### Returns true if in the list, false if not, and reason if object is not a list. Can check for multiple elements in a list or string.
-Passing Example:
+Passing Example (list):
 ```python
 def test_to_include():
     return Expect(['foo','bar']).to_include('foo', 'bar')
+```
+Passing Example (string):
+```python
+def test_to_include():
+    return Expect('foo').to_include('f', 'o')
 ```
 #### `to_not_include`
 ##### Returns true if not in the list, false if it is, and reason if object is not a list.
@@ -94,7 +98,7 @@ def test_to_not_include():
 Passing Example:
 ```python
 test_to_output_to_stdout():
-    return Expect('Hello World').to_output_to_stdout('Hello World'))
+    return Expect(lambda: print('Hello World')).to_output_to_stdout('Hello World'))
 ```
 #### `to_throw_error`
 ##### Specifies if a block of code raises an error.

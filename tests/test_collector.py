@@ -11,18 +11,6 @@ def test_get_directories_and_their_modules():
             {"directory": fizzbuzz_directory, "modules": ['test_logic']}
         ])
 
-def test_extract_adds_directory_to_sys_path():
-    extract_tests({"directory": 'hello', "modules":[]}, [])
-    return Expect(sys.path).to_include('hello')
-
-def test_extract_tests_adds_tests_in_directory_to_list():
-    list = []
-    example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
-    fizzbuzz_directory = example_directory_path + '/fizzbuzz/example_tests'
-    extract_tests({ "directory": fizzbuzz_directory, "modules": ['test_logic']}, list)
-    from test_logic import test_fizz
-    return Expect(list).to_include(test_fizz)
-
 def test_reset_sys_path():
     original_sys_path = set(sys.path)
     sys.path.append('helloworld, this will be removed')
@@ -41,11 +29,29 @@ def test_print_intelligent_error_message_if_no_tests_found():
     return Expect(lambda: no_tests_found()).to_output_to_stdout(intelligent_error_message)
 
 def test_extract_tests_directory_dictionary_to_module_dictionaries():
+    original_sys_path = set(sys.path)
     list = []
     example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
     fizzbuzz_directory = example_directory_path + '/fizzbuzz/example_tests'
     from test_logic import test_fizz, test_buzz, test_fizzbuzz, test_number
-    module_dictionaries = extract_module_dictionaries({ "directory": fizzbuzz_directory, "modules": ['test_logic']})
+    module_dictionaries = extract_module_dictionaries(
+        { "directory": fizzbuzz_directory, "modules": ['test_logic']},
+        original_sys_path
+        )
     return Expect(module_dictionaries).to_equal([
         {"module": 'test_logic', "tests": [test_buzz, test_fizz, test_fizzbuzz, test_number]}
     ])
+
+def test_collect_module_returns_module():
+    example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
+    module_dictionary = collect_module(example_directory_path, 'fizzbuzz/example_tests/test_logic.py')
+    fizzbuzz_directory = example_directory_path + '/fizzbuzz/example_tests'
+    import test_logic
+    Expect(module_dictionary['module']).to_equal(test_logic)
+
+def test_collect_module_returns_module_containing_tests():
+    example_directory_path = os.path.dirname(os.path.realpath(__file__)) + '/example_projects'
+    module_dictionary = collect_module(example_directory_path, 'fizzbuzz/example_tests/test_logic.py')
+    fizzbuzz_directory = example_directory_path + '/fizzbuzz/example_tests'
+    from test_logic import test_fizz, test_buzz
+    Expect(module_dictionary['tests']).to_include(test_fizz, test_buzz)

@@ -1,5 +1,5 @@
 import click
-from runner import run
+from runner import *
 
 @click.group()
 def test():
@@ -13,4 +13,4 @@ def test(filename):
         click.echo(filename)
         #run(filname)
     else:
-        run()
+        run_all()

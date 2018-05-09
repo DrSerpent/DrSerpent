@@ -1,5 +1,5 @@
 import click
-from runner import run
+from runner import *
 
 @click.group()
 def test():
@@ -9,8 +9,9 @@ def test():
 @click.argument('filename', required=False)
 def test(filename):
     if filename:
-        click.echo("running specfic test file")
-        click.echo(filename)
+        run_module('.',filename)
+        # click.echo("running specfic test file")
+        # click.echo(filename)
         #run(filname)
     else:
-        run()
+        run_all('.','tests')

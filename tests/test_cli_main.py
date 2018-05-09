@@ -38,6 +38,15 @@ def test_init_CLI_command_should_create_a_test_folder_with_a_context_file():
 
 def test_serpent_CLI_command_should_run_all_tests():
     runner = CliRunner()
+    with runner.isolated_filesystem() as tempdir:
+        runner.invoke(cli, ['--example'])
+        result = runner.invoke(cli)
+        print(result.output)
+
+    return Expect(result.output).to_include('test_fizz')
+
+def test_serpent_CLI_command_should_run_even_if_no_tests_found():
+    runner = CliRunner()
     with runner.isolated_filesystem():
         result = runner.invoke(cli)
 

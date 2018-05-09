@@ -1,5 +1,5 @@
 from click.testing import CliRunner
-from context import *
+from context_src import *
 
 def test_version_CLI_command_exit_code_should_equal_zero():
     runner = CliRunner()
@@ -38,7 +38,7 @@ def test_init_CLI_command_should_create_a_test_folder_with_a_context_file():
 
 def test_serpent_CLI_command_should_run_all_tests():
     runner = CliRunner()
-    with runner.isolated_filesystem() as tempdir:
+    with runner.isolated_filesystem():
         result = runner.invoke(cli)
 
-    return Expect(result.output).to_equal('No tests found.')
+    return Expect(result.output).to_include('No tests found.')

@@ -1,7 +1,7 @@
 import click
 
 from click.testing import CliRunner
-from context import *
+from context_src import *
 
 def test_about_CLI_command_exit_code_should_be_zero():
     runner = CliRunner()

@@ -16,4 +16,4 @@ def test_fizzbuzz():
     return Expect(Fizzbuzz.run(15)).to_equal('Fizzbuzz')
 
 def test_number():
-    Expect(Fizzbuzz.run(1)).to_equal(1)
+    return Expect(Fizzbuzz.run(1)).to_equal(1)

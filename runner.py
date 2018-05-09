@@ -1,10 +1,10 @@
 from collector import *
 from executor import *
 
-def run_all():
+def run_all(top,directory_naming_convention):
     original_sys_path = set(sys.path)
 
-    directory_dictionaries = get_tests('.', 'tests')
+    directory_dictionaries = get_tests(top, directory_naming_convention)
 
     module_dictionaries = []
 
@@ -33,9 +33,9 @@ def run_all():
     \U0001F6A8  Passed: {pass_count}, Failed: {fail_count}
     \n\n""")
 
-def run_test(path_to):
+def run_module(top,path_to):
     original_sys_path = set(sys.path)
 
-    module_dictionary = collect_module('.',path_to,original_sys_path)
+    module_dictionary = collect_module(top,path_to,original_sys_path)
 
     execute_module(module_dictionary)

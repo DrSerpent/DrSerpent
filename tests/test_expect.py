@@ -23,7 +23,7 @@ def test_to_be_truthy_returns_false():
     return Expect(Expect(False).to_be_truthy()['result']).to_equal(False)
 
 def test_to_be_falsey_returns_true():
-    return Expect(Expect(False).to_be_falsey()['result']).to_equal(True)
+    return Expect(Expect(0).to_be_falsey()['result']).to_equal(True)
 
 def test_to_be_falsey_returns_false():
     return Expect(Expect("foo").to_be_falsey()['result']).to_equal(False)

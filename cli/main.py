@@ -31,7 +31,7 @@ def cli(ctx, init):
         init_folder_creation()
     # --run tests
     elif ctx.invoked_subcommand is None:
-        run_all()
+        run_all('.','tests')
 
     # get subcommands
     else:

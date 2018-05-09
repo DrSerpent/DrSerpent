@@ -41,6 +41,7 @@ def test_serpent_CLI_command_should_run_all_tests():
     with runner.isolated_filesystem() as tempdir:
         runner.invoke(cli, ['--example'])
         result = runner.invoke(cli)
+        print(result.output)
 
     return Expect(result.output).to_include('test_fizz')
 

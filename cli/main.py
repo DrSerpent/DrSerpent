@@ -10,7 +10,7 @@ TEST_DST_ROOT = './tests'
 TEST_LOGIC_SRC_FILE = os.path.dirname(__file__) + '/../init_example/fizzbuzz.py'
 TEST_LOGIC_DST_ROOT = '.'
 
-CONTEXT_SRC_FILE = os.path.dirname(__file__) + '/../init_example/context.py'
+TEST_CONTEXT_SRC_FILE = os.path.dirname(__file__) + '/../init_example/context.py'
 CONTEXT_SRC_FILE = os.path.dirname(__file__) + '/../init/context.py'
 
 SNAKE_EMOJI = '\U0001F40D'
@@ -71,7 +71,12 @@ def cli(ctx, filepath, init, about, example):
     elif ctx.invoked_subcommand is None:
         run_all()
 
-## functions
+##  Run specific file function
+def run_specific_file(filepath):
+    click.echo("running specfic test file")
+    run_test(filepath)
+
+## Init functions
 def create_test_dir():
     if not os.path.exists('tests'):
         os.makedirs('tests')
@@ -83,20 +88,18 @@ def create_context_file():
     if not os.path.isfile('tests/context.py'):
         shutil.copy(CONTEXT_SRC_FILE, TEST_DST_ROOT)
 
-def run_specific_file(filepath):
-    click.echo("running specfic test file")
-    run_test(filepath)
-
+## about function
 def print_about_message():
     print(f"Made with {SNAKE_EMOJI} by Alexandra McCarroll, Tom Betts, Richard Hewitt, Hemesh Unka (February 2018 Cohort - Makers Academy)")
 
+## fizzbuzz test functions
 def create_fizzbuzz_test_file():
     if not os.path.isfile('tests/test_logic.py'):
         shutil.copy(TEST_SRC_FILE, TEST_DST_ROOT)
 
 def create_fizzbuzz_context_file():
     if not os.path.isfile('tests/context.py'):
-        shutil.copy(CONTEXT_SRC_FILE, TEST_DST_ROOT)
+        shutil.copy(TEST_CONTEXT_SRC_FILE, TEST_DST_ROOT)
 
 def create_fizzbuzz_file():
     if not os.path.isfile('logic.py'):

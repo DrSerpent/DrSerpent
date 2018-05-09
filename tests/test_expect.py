@@ -53,8 +53,14 @@ def test_to_be_less_than_returns_result_false():
 def test_to_include_returns_true_if_in_list():
     return Expect(Expect(['yes','no']).to_include('yes')["result"]).to_equal(True)
 
+def test_to_include_returns_true_if_multiple_parameters_in_list():
+    return Expect(Expect(['yes','no']).to_include('yes','no')["result"]).to_equal(True)
+
 def test_to_include_returns_true_if_in_string():
     return Expect(Expect('hellworld').to_include('ell')["result"]).to_equal(True)
+
+def test_to_include_returns_true_if_multiple_parameters_in_string():
+    return Expect(Expect('hellworld').to_include('ell','orl')["result"]).to_equal(True)
 
 def test_to_include_returns_false_if_not_in_list():
     return Expect(Expect(['yes','no']).to_include('maybe')["result"]).to_equal(False)
@@ -67,6 +73,7 @@ def test_to_include_returns_reason_if_expectation_is_not_a_list_or_string():
 
 def test_to_include_returns_reason_if_searching_for_something_other_than_string_in_string():
     return Expect(Expect('yes').to_include([])["reason"]).to_equal("<class 'str'> cannot contain <class 'list'>")
+
 
 
 # to_not_include

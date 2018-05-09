@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='drserpent',
-    version='2.0',
+    version='2.1',
     packages=[],
     include_package_data=True,
     install_requires=[
@@ -15,8 +15,9 @@ setup(
     author_email='tom.betts@live.co.uk',
     license='MIT',
     zip_safe=False,
-    entry_points='''
-        [console_scripts]
-        serpent=cli.main:cli
-    ''',
-)
+    entry_points={
+        'console_scripts': [
+            'serpent=cli.main:cli'
+        ],
+    }
+    )

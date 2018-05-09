@@ -69,12 +69,12 @@ def cli(ctx, filepath, init, about, example):
 
     # serpent command
     elif ctx.invoked_subcommand is None:
-        run_all()
+        run_all('.','tests')
 
 ##  Run specific file function
 def run_specific_file(filepath):
     click.echo("running specfic test file")
-    run_test(filepath)
+    run_module('.', filepath)
 
 ## Init functions
 def create_test_dir():

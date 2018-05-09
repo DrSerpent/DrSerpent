@@ -17,33 +17,13 @@ def test_number():
 
 ## How to use:
 
-[Click Here](https://pypi.org/project/drserpent/) to visit the PyPi URL.
+#### [Click Here](https://pypi.org/project/drserpent/) to visit the PyPi URL.
 
-### Getting Started:
+#### View DrSerpent [documentation](https://github.com/DrSerpent/DrSerpent-Core/blob/master/DOCUMENTATION.md).
 
-`pip install drserpent`
+#### [Getting Started](https://github.com/DrSerpent/DrSerpent-Core/blob/master/DOCUMENTATION.md#getting-started)
 
-- Initialise file structure: `$ serpent --init`
-- Initialise dummy file structure (FizzBuzz): `$ serpent example`
-- Run all tests: `$ serpent`
-- Check PyPi version: `$ serpent --version`
-- Information about DrSerpent: `$ serpent about`
-
-**Important to note: all tests must start with `test_`**
-
-### File Structure:
-
-```
-.
-|–– code.py
-|–– tests
-    |
-    |–– context.py
-    |–– test_code.py
-```
-
-The `context.py` file establishes the file route. Run `$ serpent example` for a clearer understanding of how to use DrSerpent.
-
+#### [Compulsory Conventions](https://github.com/DrSerpent/DrSerpent-Core/blob/master/DOCUMENTATION.md#conventions)
 
 ### Matchers:
 

@@ -1,11 +1,9 @@
 import click
 
-SNAKE_EMOJI = '\U0001F40D'
-
 @click.group()
 def about():
     pass
 
 @about.command()
 def about():
-    print(f"Made with {SNAKE_EMOJI} by Alexandra McCarroll, Tom Betts, Richard Hewitt, Hemesh Unka (February 2018 Cohort - Makers Academy)")
+    click.echo(emoji.emojize('Made with :snake: by Alexandra McCarroll, Tom Betts, Ricky Hewitt, Hemesh Unka (Feb 2018 Cohort - Makers Academy)'))

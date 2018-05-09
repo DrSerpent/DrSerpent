@@ -5,7 +5,7 @@ import shutil
 from .about import about
 from .example import example
 from .test import test
-from testrunner import run
+from runner import run
 
 CONTEXT_SRC_FILE = os.path.dirname(__file__) + '/../init/context.py'
 TEST_DST_ROOT = './tests'

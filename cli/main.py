@@ -8,8 +8,7 @@ from .test import test
 from runner import run
 
 CONTEXT_SRC_FILE = os.path.dirname(__file__) + '/../init/context.py'
-# need to know which path
-TEST_DST_ROOT = '/tests'
+TEST_DST_ROOT = './tests'
 
 @click.group(
     invoke_without_command=True,
@@ -27,9 +26,12 @@ TEST_DST_ROOT = '/tests'
     is_flag=True)
 
 def cli(ctx, init):
+
     # --init
     if ctx.invoked_subcommand is None and init:
-        init_folder_creation()
+        create_test_dir()
+        create_context_file()
+
     # --run tests
     elif ctx.invoked_subcommand is None:
         run()
@@ -42,11 +44,13 @@ cli.add_command(about)
 cli.add_command(test)
 cli.add_command(example)
 
-# --init cli test dir creation
-def init_folder_creation():
+def create_test_dir():
     if not os.path.exists('tests'):
         os.makedirs('tests')
-        shutil.copy(CONTEXT_SRC_FILE, TEST_DST_ROOT)
-        click.echo('    created  test/')
+        click.echo('\t\tcreated\ttest/')
     else:
-        click.echo('    exists   test/')
+        click.echo('\t\texists\ttest/')
+
+def create_context_file():
+    if not os.path.isfile('tests/context.py'):
+        shutil.copy(CONTEXT_SRC_FILE, TEST_DST_ROOT)

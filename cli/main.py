@@ -3,8 +3,8 @@ import os
 import shutil
 
 from runner import *
-from .about import about
-from .example import example
+# from .about import about
+# from .example import example
 
 CONTEXT_SRC_FILE = os.path.dirname(__file__) + '/../init/context.py'
 TEST_DST_ROOT = './tests'
@@ -21,14 +21,24 @@ TEST_DST_ROOT = './tests'
     '--init',
     help='Initialize your project with Serpent.',
     is_flag=True)
+
+@click.option(
+    '--about',
+
+)
+
 @click.argument('filepath', required=False)
 
 def cli(ctx, filepath, init):
+
+    # cli.add_command(about)
+    # cli.add_command(example)
 
     # --init
     if ctx.invoked_subcommand is None and init:
         create_test_dir()
         create_context_file()
+
 
     elif ctx.invoked_subcommand is None and filepath:
         if filepath:
@@ -42,8 +52,6 @@ def cli(ctx, filepath, init):
     else:
         pass
 
-cli.add_command(about)
-cli.add_command(example)
 
 def create_test_dir():
     if not os.path.exists('tests'):
@@ -58,4 +66,4 @@ def create_context_file():
 
 def run_specific_file(filepath):
     click.echo("running specfic test file")
-    click.echo(filepath)
+    run_test(filepath)

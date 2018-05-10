@@ -4,4 +4,4 @@ import sys
 from expect import Expect
 from collector import *
 from executor import *
-from cli.main import *
+from scripts.main import *

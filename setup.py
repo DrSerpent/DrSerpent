@@ -3,7 +3,10 @@ from setuptools import setup, find_packages
 version = {}
 with open('./version.py') as fp:
     exec(fp.read(), version)
-
+    
+with open('PyPiREADME.rst') as f:
+    long_description = f.read()
+   
 setup(
     name='drserpent',
     version=version['__version__'],
@@ -15,6 +18,7 @@ setup(
         'Click',
     ],
     description='Python Testing Framework',
+    long_description=long_description,
     url='https://github.com/DrSerpent/DrSerpent-Core',
     author='Tom Betts',
     author_email='tom.betts@live.co.uk',

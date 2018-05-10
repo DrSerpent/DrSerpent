@@ -56,7 +56,7 @@ def cli(ctx, filepath, init, about, example):
 
     # Flag --example command
     elif ctx.invoked_subcommand is None and example:
-        click.echo("Initialising fizzbuzz example")
+        click.echo("Initialising fizzbuzz example...")
         create_test_dir()
         create_fizzbuzz_file()
         create_fizzbuzz_test_file()
@@ -69,7 +69,7 @@ def cli(ctx, filepath, init, about, example):
 
     # serpent command
     elif ctx.invoked_subcommand is None:
-        run_all('.','tests')
+        run_all('.', 'tests')
 
 ##  Run specific file function
 def run_specific_file(filepath):
@@ -80,13 +80,16 @@ def run_specific_file(filepath):
 def create_test_dir():
     if not os.path.exists('tests'):
         os.makedirs('tests')
-        click.echo('\t\tcreated\ttest/')
+        click.echo('\n\tcreated\ttests/')
     else:
-        click.echo('\t\texists\ttest/')
+        click.echo('\n\texists\ttests/')
 
 def create_context_file():
     if not os.path.isfile('tests/context.py'):
         shutil.copy(CONTEXT_SRC_FILE, TEST_DST_ROOT)
+        click.echo('\tcreated\ttests/context.py')
+    else:
+        click.echo('\texists\ttests/context.py')
 
 ## about function
 def print_about_message():
@@ -94,13 +97,22 @@ def print_about_message():
 
 ## fizzbuzz test functions
 def create_fizzbuzz_test_file():
-    if not os.path.isfile('tests/test_logic.py'):
+    if not os.path.isfile('tests/test_fizzbuzz.py'):
         shutil.copy(TEST_SRC_FILE, TEST_DST_ROOT)
+        click.echo('\tcreated\ttests/test_fizzbuzz.py')
+    else:
+        click.echo('\texists\ttests/test_fizzbuzz.py')
 
 def create_fizzbuzz_context_file():
     if not os.path.isfile('tests/context.py'):
         shutil.copy(TEST_CONTEXT_SRC_FILE, TEST_DST_ROOT)
+        click.echo('\tcreated\ttests/context.py')
+    else:
+        click.echo('\texists\ttests/context.py')
 
 def create_fizzbuzz_file():
-    if not os.path.isfile('logic.py'):
+    if not os.path.isfile('./fizzbuzz.py'):
         shutil.copy(TEST_LOGIC_SRC_FILE, TEST_LOGIC_DST_ROOT)
+        click.echo('\tcreated\tfizzbuzz.py')
+    else:
+        click.echo('\texists\tfizzbuzz.py')

@@ -1,13 +1,17 @@
 from setuptools import setup, find_packages
 
+version = {}
+with open('./version.py') as fp:
+    exec(fp.read(), version)
+    
 with open('PyPiREADME.rst') as f:
     long_description = f.read()
-
+   
 setup(
     name='drserpent',
-    version='2.9',
-    packages=['cli','init','init_example'],
-    py_modules=['expect','runner','collector','executor'],
+    version=version['__version__'],
+    packages=['scripts', 'init', 'init_example'],
+    py_modules=['expect', 'runner', 'collector', 'executor'],
     include_package_data=True,
     install_requires=[
         'emoji',
@@ -22,7 +26,7 @@ setup(
     zip_safe=False,
     entry_points={
         'console_scripts': [
-            'serpent=cli.main:cli'
+            'serpent=scripts.main:cli'
         ],
     }
     )

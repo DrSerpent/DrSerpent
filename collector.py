@@ -20,10 +20,10 @@ def no_tests_found():
     intelligent_error_message = """
         No tests have been found -
         please note that there are strict naming conventions:
-        1. Directory name are named "tests"
+        1. Directories are named "tests"
         2. Test files start with "test_"
         3. Test functions start with "test_"
-        e.g. repository_path/src/tests/test_descriptive_name contains def test_describe
+        e.g. repository_path/src/tests/test_descriptive_name.py contains def test_describe
         """
     print(intelligent_error_message)
 

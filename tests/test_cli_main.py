@@ -1,26 +1,33 @@
 from click.testing import CliRunner
 from context_src import *
 
-def test_version_CLI_command_exit_code_should_equal_zero():
+version = {}
+with open('./version.py') as fp:
+    exec(fp.read(), version)
+
+
+def test_version_cli_command_exit_code_should_equal_zero():
     runner = CliRunner()
     result = runner.invoke(cli, ['--version'])
 
     return Expect(result.exit_code).to_equal(0)
 
-def test_version_CLI_should_print_current_version():
+def test_version_cli_should_print_current_version():
     runner = CliRunner()
     result = runner.invoke(cli, ['--version'])
 
-    return Expect(result.output).to_equal('Serpent 1.0\n')
 
-def test_init_CLI_command_exit_code_should_equal_zero():
+    print(version['__version__'])
+    return Expect(result.output).to_equal(f"Serpent {version['__version__']}\n")
+
+def test_init_cli_command_exit_code_should_equal_zero():
     runner = CliRunner()
-    with runner.isolated_filesystem() as tempdir:
+    with runner.isolated_filesystem():
         result = runner.invoke(cli, ['--init'])
 
     return Expect(result.exit_code).to_equal(0)
 
-def test_init_CLI_command_should_create_a_test_folder():
+def test_init_cli_command_should_create_a_test_folder():
     runner = CliRunner()
     with runner.isolated_filesystem() as tempdir:
         runner.invoke(cli, ['--init'])
@@ -28,7 +35,7 @@ def test_init_CLI_command_should_create_a_test_folder():
 
     return Expect(result).to_equal(True)
 
-def test_init_CLI_command_should_create_a_test_folder_with_a_context_file():
+def test_init_cli_command_should_create_a_test_folder_with_a_context_file():
     runner = CliRunner()
     with runner.isolated_filesystem() as tempdir:
         runner.invoke(cli, ['--init'])
@@ -36,16 +43,21 @@ def test_init_CLI_command_should_create_a_test_folder_with_a_context_file():
 
     return Expect(result).to_equal(True)
 
-def test_serpent_CLI_command_should_run_all_tests():
+def test_serpent_cli_command_should_run_all_tests():
     runner = CliRunner()
-    with runner.isolated_filesystem() as tempdir:
+    with runner.isolated_filesystem():
         runner.invoke(cli, ['--example'])
         result = runner.invoke(cli)
         print(result.output)
 
-    return Expect(result.output).to_include('test_fizz')
+    return Expect(result.output).to_include(
+        'test_fizz',
+        'test_buzz',
+        'test_fizzbuzz',
+        'test_number'
+    )
 
-def test_serpent_CLI_command_should_run_even_if_no_tests_found():
+def test_serpent_cli_command_should_run_even_if_no_tests_found():
     runner = CliRunner()
     with runner.isolated_filesystem():
         result = runner.invoke(cli)

@@ -1,7 +1,7 @@
 # Dr Serpent Documentation
 
 ## Description:
-Dr Serpent 🐍 in an easy to use testing framework for Python focusing on Behaviour Driven Development and Test Driven Development processes.
+Dr Serpent 🐍  is an easy to use testing framework for Python focusing on Behaviour Driven Development and Test Driven Development processes.
 
 ## Example:
 

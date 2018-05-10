@@ -1,8 +1,11 @@
 from setuptools import setup, find_packages
 
+with open('PyPiREADME.rst') as f:
+    long_description = f.read()
+
 setup(
     name='drserpent',
-    version='2.4',
+    version='2.9',
     packages=['cli','init','init_example'],
     py_modules=['expect','runner','collector','executor'],
     include_package_data=True,
@@ -11,6 +14,7 @@ setup(
         'Click',
     ],
     description='Python Testing Framework',
+    long_description=long_description,
     url='https://github.com/DrSerpent/DrSerpent-Core',
     author='Tom Betts',
     author_email='tom.betts@live.co.uk',

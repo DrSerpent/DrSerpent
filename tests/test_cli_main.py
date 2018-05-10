@@ -1,6 +1,11 @@
 from click.testing import CliRunner
 from context_src import *
 
+version = {}
+with open('./version.py') as fp:
+    exec(fp.read(), version)
+
+
 def test_version_CLI_command_exit_code_should_equal_zero():
     runner = CliRunner()
     result = runner.invoke(cli, ['--version'])
@@ -11,9 +16,9 @@ def test_version_CLI_should_print_current_version():
     runner = CliRunner()
     result = runner.invoke(cli, ['--version'])
 
-    print(__version__)
 
-    return Expect(result.output).to_equal('Serpent 1.0\n')
+    print(version['__version__'])
+    return Expect(result.output).to_equal(f"Serpent {version['__version__']}\n")
 
 def test_init_CLI_command_exit_code_should_equal_zero():
     runner = CliRunner()

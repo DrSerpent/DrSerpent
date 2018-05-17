@@ -18,7 +18,7 @@ Example:
 
   # test_file
   def test_number():
-      Expect(run(2)).to_equal(2)
+    return Expect(run(2)).to_equal(2)
 
 How to use:
 ===========

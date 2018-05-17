@@ -93,8 +93,7 @@ def create_context_file():
 
 ## about function
 def print_about_message():
-    click.echo("Made with Python by Alexandra McCarroll, Tom Betts, Richard Hewitt, Hemesh Unka (February 2018 Cohort - Makers Academy)")
-    # print(f"Made with {SNAKE_EMOJI} (Python) by Alexandra McCarroll, Tom Betts, Richard Hewitt, Hemesh Unka (February 2018 Cohort - Makers Academy)")
+    print(f"Made with {SNAKE_EMOJI} (Python) by Alexandra McCarroll, Tom Betts, Richard Hewitt, Hemesh Unka (February 2018 Cohort - Makers Academy)")
 
 ## fizzbuzz test functions
 def create_fizzbuzz_test_file():

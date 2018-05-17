@@ -1,5 +1,7 @@
 language: python
 install:
+  - pip install click
+  - pip install emoji
   - pip install drserpent
 script:
   - serpent

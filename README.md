@@ -1,7 +1,7 @@
 # Dr Serpent Documentation
 
 ## Description:
-Dr Serpent 🐍  is an easy to use testing framework for Python focusing on Behaviour Driven Development and Test Driven Development processes.
+Dr Serpent 🐍  is an easy to use testing framework for Python focusing on Behavior Driven Development and Test Driven Development processes.
 
 ## Example:
 
@@ -12,12 +12,12 @@ def run():
 
 # test_file
 def test_number():
-    Expect(run(2)).to_equal(2)
+    return Expect(run(2)).to_equal(2)
 ```
 
 ## How to use:
 
-#### [Click Here](https://pypi.org/project/drserpent/) to visit the PyPi URL.
+#### [Click here](https://pypi.org/project/drserpent/) to visit the PyPi URL.
 
 #### View DrSerpent [documentation](https://github.com/DrSerpent/DrSerpent-Core/blob/master/DOCUMENTATION.md).
 
